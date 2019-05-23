@@ -79,8 +79,21 @@ public class SpawnBiomeFixer {
 	}
 
 	public static void hanabeeperFix() {
+		Set<BiomeGenBase> spawnBiomes = new HashSet<>();
+		Collections.addAll(spawnBiomes, BiomeDictionary.getBiomesForType(Type.PLAINS));
+		Collections.addAll(spawnBiomes, BiomeDictionary.getBiomesForType(Type.MOUNTAIN));
+		Collections.addAll(spawnBiomes, BiomeDictionary.getBiomesForType(Type.HILLS));
+		Collections.addAll(spawnBiomes, BiomeDictionary.getBiomesForType(Type.SANDY));
+		Collections.addAll(spawnBiomes, BiomeDictionary.getBiomesForType(Type.SNOWY));
+		Collections.addAll(spawnBiomes, BiomeDictionary.getBiomesForType(Type.COLD));
+		Collections.addAll(spawnBiomes, BiomeDictionary.getBiomesForType(Type.SWAMP));
+
+		for(BiomeGenBase biome : BiomeDictionary.getBiomesForType(Type.END)) {
+			spawnBiomes.remove(biome);
+		}
+
 		LogHelper.info("JTG fixing spawn biomes for Hanabeeper");
-		EntityRegistry.addSpawn(EntityDanmakuCreeper.class, 2, 1, 4, EnumCreatureType.monster, BiomeDictionary.getBiomesForType(Type.SANDY));
+		EntityRegistry.addSpawn(EntityDanmakuCreeper.class, 50, 1, 4, EnumCreatureType.monster,spawnBiomes.toArray(new BiomeGenBase[0]));
 	}
 
 	public static void cirnoFix() {
@@ -94,7 +107,7 @@ public class SpawnBiomeFixer {
 		}
 
 		LogHelper.info("JTG fixing spawn biomes for Cirno");
-		EntityRegistry.addSpawn(EntityCirno.class, 2, 1, 1, EnumCreatureType.monster, spawnBiomes.toArray(new BiomeGenBase[0]));
+		EntityRegistry.addSpawn(EntityCirno.class, 10, 1, 1, EnumCreatureType.monster, spawnBiomes.toArray(new BiomeGenBase[0]));
 	}
 
 	public static void rumiaFix() {

@@ -13,15 +13,20 @@ import java.util.List;
 
 import cpw.mods.fml.common.registry.EntityRegistry;
 import katrix.journeyToGensokyo.JourneyToGensokyo;
+import katrix.journeyToGensokyo.handler.ConfigHandler;
 import katrix.journeyToGensokyo.lib.LibEntityName;
 import katrix.journeyToGensokyo.lib.LibMobID;
 import katrix.journeyToGensokyo.lib.LibSpellcardId;
+import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
+import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
+import net.minecraftforge.common.BiomeDictionary;
+import net.minecraftforge.common.BiomeDictionary.Type;
 import thKaguyaMod.DanmakuConstants;
 import thKaguyaMod.ShotData;
 import thKaguyaMod.THShotLib;
@@ -29,6 +34,7 @@ import thKaguyaMod.entity.living.EntityDanmakuMob;
 import thKaguyaMod.entity.shot.EntityTHLaser;
 import thKaguyaMod.entity.shot.EntityTHShot;
 import thKaguyaMod.entity.spellcard.EntitySpellCard;
+import thKaguyaMod.init.THKaguyaConfig;
 import thKaguyaMod.init.THKaguyaItems;
 import thKaguyaMod.item.ItemTHShot;
 
@@ -453,16 +459,31 @@ public class EntityYukari extends EntityDanmakuMob {
 	}
 
 	@Override
+	public boolean doesEntityNotTriggerPressurePlate() {
+		return true;
+	}
+
+	@Override
 	public int getMaxSpawnedInChunk() {
 		return 1;
 	}
 
 	@Override
 	public boolean getCanSpawnHere() {
-		return false;
+		if(rand.nextInt(100) < THKaguyaConfig.fairySpawnRate && rand.nextInt(100) < 90 || !super.getCanSpawnHere()) return false;
+
+		int range = 64;
+		@SuppressWarnings("unchecked") List<EntityYukari> yukaris = worldObj.getEntitiesWithinAABB(EntityReimuHostile.class,
+				AxisAlignedBB.getBoundingBox(posX - range, posY - range, posZ - range, posX + range + 1, posY + range + 1, posZ + range + 1));
+		return yukaris.size() < 1 && worldObj.difficultySetting != EnumDifficulty.PEACEFUL;
 	}
 
 	public static void postInit() {
 		EntityRegistry.registerModEntity(EntityYukari.class, LibEntityName.YUKARI, LibMobID.YUKARI, JourneyToGensokyo.instance, 80, 1, true);
+
+		if(THKaguyaConfig.spawnBoss && ConfigHandler.newBossesSpawn) {
+			EntityRegistry.addSpawn(EntityYukari.class, 2, 1, 1, EnumCreatureType.monster, BiomeDictionary.getBiomesForType(Type.FOREST));
+		}
 	}
+
 }

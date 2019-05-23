@@ -376,7 +376,6 @@ public class EntityMarisa extends EntityDanmakuMob {
 		@SuppressWarnings("unchecked") List<EntityMarisa> marisas = worldObj.getEntitiesWithinAABB(EntityReimuHostile.class,
 				AxisAlignedBB.getBoundingBox(posX - range, posY - range, posZ - range, posX + range + 1, posY + range + 1, posZ + range + 1));
 		return marisas.size() < 1 && worldObj.difficultySetting != EnumDifficulty.PEACEFUL;
-
 	}
 
 	public static void postInit() {
