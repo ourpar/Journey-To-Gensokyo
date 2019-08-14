@@ -11,7 +11,6 @@ package net.katsstuff.journeytogensokyo.client
 import scala.reflect.ClassTag
 
 import net.katsstuff.journeytogensokyo.CommonProxy
-import net.katsstuff.journeytogensokyo.client.handler.ClientDialogueHandler
 import net.katsstuff.journeytogensokyo.client.render.{RenderFairy, RenderHellRaven, RenderPhantom, RenderReimu, RenderTenguCrow}
 import net.minecraft.block.Block
 import net.minecraft.client.renderer.block.model.{ModelResourceLocation => MRL}
@@ -65,8 +64,6 @@ object ClientProxy {
 
 class ClientProxy extends CommonProxy {
 
-  val dialogueHandler = new ClientDialogueHandler
-
   override def registerRenderers(): Unit = {
     registerEntityRenderer(new RenderFairy(_))
     registerEntityRenderer(new RenderTenguCrow(_))
@@ -74,22 +71,7 @@ class ClientProxy extends CommonProxy {
     registerEntityRenderer(new RenderPhantom(_))
     registerEntityRenderer(new RenderReimu(_))
 
-    MinecraftForge.EVENT_BUS.register(dialogueHandler)
   }
-
-  override def serverStarting(event: FMLServerStartingEvent): Unit =
-    dialogueHandler.refresh()
-
-  override def serverStopped(event: FMLServerStoppedEvent): Unit =
-    dialogueHandler.refresh()
-
-  @SubscribeEvent
-  def onJoined(event: ClientConnectedToServerEvent): Unit =
-    dialogueHandler.refresh()
-
-  @SubscribeEvent
-  def onQuit(event: ClientDisconnectionFromServerEvent): Unit =
-    dialogueHandler.refresh()
 
   def registerEntityRenderer[A <: Entity: ClassTag](f: RenderManager => Render[A]): Unit = {
     val factory: IRenderFactory[A] = manager => f(manager)
