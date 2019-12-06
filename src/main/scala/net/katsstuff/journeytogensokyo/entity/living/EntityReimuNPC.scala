@@ -1,7 +1,7 @@
 package net.katsstuff.journeytogensokyo.entity.living
 
-import net.katsstuff.teamnightclipse.danmakucore.entity.living.ai.EntityAIWanderHover
-import net.katsstuff.teamnightclipse.danmakucore.entity.living.{EntityDanmakuCreature, TouhouSpecies}
+import net.katsstuff.danmakucore.entity.living.ai.EntityAIWanderHover
+import net.katsstuff.danmakucore.entity.living.{EntityDanmakuCreature, TouhouSpecies}
 import net.minecraft.entity.INpc
 import net.minecraft.entity.ai.{EntityAILookIdle, EntityAISwimming, EntityAIWander, EntityAIWatchClosest}
 import net.minecraft.entity.player.EntityPlayer

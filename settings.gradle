@@ -1,0 +1,3 @@
+include("DanmakuCore")
+include("DanmakuCore:Mirror")
+rootProject.buildFileName = 'build.gradle.kts'

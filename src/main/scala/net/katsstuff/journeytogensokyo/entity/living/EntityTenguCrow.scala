@@ -8,13 +8,13 @@
  */
 package net.katsstuff.journeytogensokyo.entity.living
 
-import net.katsstuff.teamnightclipse.danmakucore.entity.living.TouhouSpecies
+import net.katsstuff.danmakucore.entity.living.TouhouSpecies
 import net.katsstuff.journeytogensokyo.entity.living.ai.EntityAIMoveRangedTengu
 import net.katsstuff.journeytogensokyo.handler.ConfigHandler
 import net.katsstuff.journeytogensokyo.handler.ConfigHandler.Spawns.SpawnEntry
 import net.katsstuff.journeytogensokyo.lib.LibEntityName
 import net.katsstuff.journeytogensokyo.phase.JTGPhases
-import net.katsstuff.teamnightclipse.danmakucore.entity.living.ai.EntityAIWanderHover
+import net.katsstuff.danmakucore.entity.living.ai.EntityAIWanderHover
 import net.minecraft.block.BlockGrass
 import net.minecraft.block.state.IBlockState
 import net.minecraft.entity.ai.{EntityAIHurtByTarget, EntityAILookIdle, EntityAINearestAttackableTarget, EntityAISwimming, EntityAIWander, EntityAIWatchClosest}

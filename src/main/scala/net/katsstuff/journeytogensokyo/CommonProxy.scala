@@ -10,10 +10,10 @@ package net.katsstuff.journeytogensokyo
 
 import scala.collection.JavaConverters._
 
-import net.katsstuff.teamnightclipse.danmakucore.data.{MovementData, ShotData}
-import net.katsstuff.teamnightclipse.danmakucore.entity.living.phase.PhaseType
-import net.katsstuff.teamnightclipse.danmakucore.lib.data.{LibForms, LibSubEntities}
-import net.katsstuff.teamnightclipse.danmakucore.scalastuff.DanmakuHelper
+import net.katsstuff.danmakucore.data.{MovementData, ShotData}
+import net.katsstuff.danmakucore.entity.living.phase.PhaseType
+import net.katsstuff.danmakucore.lib.data.{LibForms, LibSubEntities}
+import net.katsstuff.danmakucore.scalastuff.DanmakuHelper
 import net.katsstuff.journeytogensokyo.api.{JourneyToGensokyoAPI => JTGAPI}
 import net.katsstuff.journeytogensokyo.block.{BlockDanOre, BlockDanmakuCrafting, JTGBlocks}
 import net.katsstuff.journeytogensokyo.entity.living.{EntityFairy, EntityHellRaven, EntityPhantom, EntityReimuNPC, EntityTenguCrow}
@@ -22,7 +22,7 @@ import net.katsstuff.journeytogensokyo.item.{ItemJTGBase, JTGItems}
 import net.katsstuff.journeytogensokyo.lib.{LibBlockName, LibEntityName, LibItemName, LibMod, LibPhaseName}
 import net.katsstuff.journeytogensokyo.phase.{PhaseTypeGenericStageEnemy, PhaseTypeHellRaven, PhaseTypeShapeArrow, PhaseTypeTengu}
 import net.katsstuff.journeytogensokyo.worldgen.OreWorldGen
-import net.katsstuff.teamnightclipse.mirror.data.Vector3
+import net.katsstuff.mirror.data.Vector3
 import net.minecraft.block.Block
 import net.minecraft.entity.{Entity, EntityLiving, EnumCreatureType}
 import net.minecraft.init.{Blocks, Items}
@@ -236,8 +236,8 @@ class CommonProxy {
       subEntity = null
     )
 
-    import net.katsstuff.teamnightclipse.danmakucore.lib.LibColor._
-    import net.katsstuff.teamnightclipse.mirror.data.Vector3.gravity
+    import net.katsstuff.danmakucore.lib.LibColor._
+    import net.katsstuff.mirror.data.Vector3.gravity
 
     recipe
       .withShot(shot.setEdgeColor(COLOR_SATURATED_GREEN).setDelay(2))

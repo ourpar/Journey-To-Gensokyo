@@ -24,6 +24,7 @@ buildscript {
 
 apply {
     plugin("net.minecraftforge.gradle.forge")
+    plugin("com.github.johnrengelman.shadow")
 }
 
 plugins {
@@ -31,7 +32,7 @@ plugins {
     //We apply these to get pretty build script
     java
     idea
-    id("com.github.johnrengelman.shadow").version("2.0.4")
+    id("com.github.johnrengelman.shadow").version("2.0.4").apply(false)
 }
 
 val compileJava: JavaCompile by tasks
@@ -50,7 +51,7 @@ compileScala.scalaCompileOptions.additionalParameters = listOf("-Xexperimental")
 
 version = "${config["mc_version"]}-${config["version"]}-${config["build_number"]}"
 group = "net.katsstuff.teamnightclipse"
-base.archivesBaseName = "journeyToGensokyo"
+base.archivesBaseName = "JtG_Unofficial"
 
 java.sourceSets {
     "main" {
@@ -72,20 +73,17 @@ minecraft.apply {
     runDir = if (file("../run1.12").exists()) "../run1.12" else "run"
     mappings = "stable_39"
     // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
-
-    replace("@VERSION@", project.version)
-    replaceIn("LibMod.Scala")
 }
 
-repositories {
+/*repositories {
     maven {
         name = "TeamNightclipse Bintray"
         setUrl("https://dl.bintray.com/team-nightclipse/maven/")
     }
-}
+} */
 
 dependencies {
-    compile("net.katsstuff.teamnightclipse:danmakucore:1.12.2-0.7.0")
+    compile(project("DanmakuCore"))
 }
 
 shadowJar.apply {
